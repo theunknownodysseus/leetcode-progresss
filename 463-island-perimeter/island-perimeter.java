@@ -1,22 +1,20 @@
-    class Solution {
-        public int islandPerimeter(int[][] grid) {
-            int peri=0,p=0;
-            int n =grid.length;
-            int m = grid[0].length;
-            for(int i = 0 ; i<n; i++){
-                for(int j =0 ; j<m; j++){
-                    if(grid[i][j]==1){
-                        peri+=4;
-                        if(i>0 && grid[i-1][j]==1){
-                            p+=2;
-                        }
-                        if(j>0 && grid[i][j-1]==1){
-                            p+=2;
-                        }
+class Solution {
+    public int islandPerimeter(int[][] grid) {
+        int perimeter = 0;
+        int red = 0;
+        int r = grid.length;
+        int c = grid[0].length;
 
-                    }
+        for(int i=0; i<r; i++) {
+            for (int j=0; j<c; j++) {
+                if(grid[i][j] == 1) {
+                    perimeter += 4;
+                    if(i+1 < r && grid[i+1][j]==1) red += 2;
+                    if(j+1 < c && grid[i][j+1]==1) red += 2;
                 }
             }
-            return peri-p;
         }
+
+        return perimeter-red;
     }
+}
