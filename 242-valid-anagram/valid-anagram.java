@@ -8,11 +8,9 @@ class Solution {
             arr[c-'a']++;
         }
         for(char c:t.toCharArray()){
-            --arr[c-'a'];
-        }
-        for(int a:arr){
-            if(a<0)
-            return false;
+            if(--arr[c-'a'] < 0){
+                return false;
+            }
         }
         return true;
     }
