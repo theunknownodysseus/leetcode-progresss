@@ -4,11 +4,11 @@ class Solution {
             return false;
         }
         int[] arr=new int[26];
-        for(char c:s.toCharArray()){
-            arr[c-'a']++;
+        for(int i = 0;i<s.length();i++){
+            arr[s.charAt(i) -'a']++;
         }
-        for(char c:t.toCharArray()){
-            if(--arr[c-'a'] < 0){
+        for(int i =0;i<t.length();i++){
+            if(--arr[t.charAt(i) -'a'] < 0){
                 return false;
             }
         }
