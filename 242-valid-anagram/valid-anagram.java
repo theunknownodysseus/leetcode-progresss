@@ -3,18 +3,16 @@ class Solution {
         if(s.length()!=t.length()){
             return false;
         }
-        Map<Character , Integer> smap= new HashMap<>();
+        int[] arr=new int[26];
         for(char c:s.toCharArray()){
-            smap.put(c,smap.getOrDefault(c,0)+1);
+            arr[c-'a']++;
         }
         for(char c:t.toCharArray()){
-            if(!smap.containsKey(c)){
-                return false;
-            }
-            if(smap.get(c)==0){
-                return false;
-            }
-            smap.put(c,smap.get(c)-1);
+            --arr[c-'a'];
+        }
+        for(int a:arr){
+            if(a<0)
+            return false;
         }
         return true;
     }
