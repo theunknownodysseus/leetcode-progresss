@@ -1,15 +1,38 @@
 class Solution {
-    public String frequencySort(String s) {
-        Map<Character,Integer> freq = new HashMap<>();
-        for(char ch:s.toCharArray()){
-            freq.put(ch,freq.getOrDefault(ch,0)+1);
+
+    static {
+        for (int i = 0; i < 500; i++) {
+            frequencySort(new String());
         }
-        String res="";
-        while(res.length() != s.length()){
-char ch = freq.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
-            res+=String.valueOf(ch).repeat(freq.get(ch));
-            freq.remove(ch);
+    }
+    public static int findMaxI(int[] f) {
+        int maxi = 0;
+        int max = 0;
+        for (int i = 0; i < f.length; i++) {
+            if (f[i] > max) {
+                maxi = i;
+                max = f[i];
+            }
         }
-        return res;
+        return maxi;
+    }
+
+    public static String frequencySort(String s) {
+        int[] f = new int[128];
+        for (char c : s.toCharArray()) {
+            f[c] += 1;
+        }
+        char[] res = new char[s.length()];
+        int i = 0;
+        while (i < s.length()) {
+            int maxi = findMaxI(f);
+            int freq = f[maxi];
+            while (freq > 0) {
+                res[i++] = (char) (maxi);
+                freq--;
+            }
+            f[maxi] = 0;
+        }
+        return new String(res);
     }
 }
