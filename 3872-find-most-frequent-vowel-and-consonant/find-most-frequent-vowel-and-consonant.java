@@ -1,20 +1,22 @@
 class Solution {
     public int maxFreqSum(String s) {
-        int vowelfreq = 0 , constfreq = 0;
-        Map<Character, Integer> map= new HashMap<>();
-        for(char a : s.toCharArray()){
-            map.put(a,map.getOrDefault(a,0)+1);
+        s=s.toLowerCase();
+        int arr[]=new int[26];
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            arr[c-'a']++;
         }
-        List<Character> arr = Arrays.asList('a','i','e','o','u');
-        for(char a : s.toCharArray()){
-            if(arr.contains(a) && vowelfreq<map.get(a)){
-                vowelfreq=map.get(a);
-                continue;
+        int vmax=0;
+        int cmax=0;
+        for(int i=0;i<arr.length;i++){
+            
+            if((i==0||i==4||i==8||i==14||i==20)&&arr[i]>vmax){
+                vmax=arr[i];
             }
-            if(!arr.contains(a) && constfreq<map.get(a)){
-                constfreq=map.get(a);
+            else if((i!=0&&i!=4&&i!=8&&i!=14&&i!=20)&&arr[i]>cmax){
+                cmax=arr[i];
             }
         }
-        return vowelfreq + constfreq;
+        return vmax+cmax;
     }
 }
