@@ -11,12 +11,12 @@ bool hasCycle(struct ListNode *head) {
     if(!head || !head->next){
         return false;
     }
-    do{
+    while(fast && fast->next){
         fast =  fast->next->next;
         slow = slow->next;
         if(fast == slow){
             return true;
         }
-    }while(fast && fast->next);
+    }
     return false;
 }
