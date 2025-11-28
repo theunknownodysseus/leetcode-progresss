@@ -10,7 +10,7 @@
 struct ListNode* mergeTwoLists(struct ListNode* a, struct ListNode* b) {
     struct ListNode dummy;
     struct ListNode* tail = &dummy;
-    dummy.next = NULL;
+    tail->next = NULL;
 
     while (a && b) {
         if (a->val <= b->val) {
