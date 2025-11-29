@@ -25,8 +25,8 @@ struct ListNode* reverseList(struct ListNode* start , struct ListNode* end) {
 }
 
 struct ListNode* swapPairs(struct ListNode* head) {
-    int k = 2;
-    if(!head){
+    if(!head)
+    {
         return head;
     }
 
@@ -36,13 +36,14 @@ struct ListNode* swapPairs(struct ListNode* head) {
     struct ListNode* start = head;
     struct ListNode* end = head;
     struct ListNode* newhead = NULL;
-    while(1){
-        for(int i = 0 ; i < k ; i++){
+    while(1)
+    {
+        for(int i = 0 ; i < 2 ; i++){
             if(!end){
                 return dum.next;
             }
             end=end->next;
-        }
+    }
         newhead = reverseList(start,end);
         prevgrptail->next = newhead;
         prevgrptail = start;
