@@ -1,16 +1,16 @@
 class Solution {
     public int countAsterisks(String s) {
-        boolean toggle = false;
         int c = 0 ;
+        int str = 0;
         char[] arr = s.toCharArray();
-        for(int i = 0 ; i< s.length(); i++){
+        for(int i = 0 ;i<s.length() ; i++){
             if(arr[i]=='|'){
-                toggle = !toggle;
-            }
-            if(arr[i]=='*' && !toggle){
                 c++;
             }
+            if(c%2==0 && arr[i]=='*'){
+                    str++;
+            }
         }
-        return c;
+        return str;
     }
 }
