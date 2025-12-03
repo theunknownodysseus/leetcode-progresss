@@ -16,30 +16,49 @@
 class Solution {
 
     
-    int height = 0;
-    public int maxheight(TreeNode curr){
-        if(curr == null){
+    // int height = 0;
+    // public int maxheight(TreeNode curr){
+    //     if(curr == null){
+    //         return 0;
+    //     }
+    //     if(curr.left == null && curr.right == null){
+    //         return 1;
+    //     }
+    //     return Math.max(maxheight(curr.left)+1,maxheight(curr.right)+1);
+    // }
+
+    // public void traverse(TreeNode curr){
+    //     if(curr==null){
+    //         return;
+    //     }
+    //     traverse(curr.left);
+    //     height = Math.max(height,(maxheight(curr.left) + maxheight(curr.right)));
+    //     traverse(curr.right);
+
+    // }
+
+    // public int diameterOfBinaryTree(TreeNode root) {
+    //     TreeNode curr = root;
+    //     traverse(curr);
+    //     return height;
+    // }
+
+    int max = 0;
+
+    public int maxdia(TreeNode curr){
+        if(curr==null){
             return 0;
         }
-        if(curr.left == null && curr.right == null){
-            return 1;
-        }
-        return Math.max(maxheight(curr.left)+1,maxheight(curr.right)+1);
+        int ldia = maxdia(curr.left);
+        int rdia = maxdia(curr.right);
+        max = Math.max(max, ldia+rdia);
+        return Math.max(ldia , rdia)+1;
     }
-
-    public void traverse(TreeNode curr){
-        if(curr==null){
-            return;
-        }
-        traverse(curr.left);
-        height = Math.max(height,(maxheight(curr.left) + maxheight(curr.right)));
-        traverse(curr.right);
-
-    }
-
-    public int diameterOfBinaryTree(TreeNode root) {
+    
+    public int diameterOfBinaryTree(TreeNode root){
         TreeNode curr = root;
-        traverse(curr);
-        return height;
+        maxdia(curr);
+        return max;
     }
+
 }
