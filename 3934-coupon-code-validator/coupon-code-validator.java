@@ -1,46 +1,39 @@
 class Solution {
     public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
-        List<String>res = new ArrayList();
-
-        List<String>e = new ArrayList();
-        List<String>g = new ArrayList();
-        List<String>p = new ArrayList();
-        List<String>r = new ArrayList();
+        int[] ind = new int[100];
+        String[] valid = {"electronics", "grocery", "pharmacy", "restaurant"};
+        List<String> res = new ArrayList<>();
         
-        for(int i=0;i<isActive.length;i++){
-            if(isActive[i]){
-                if(businessLine[i].equals("electronics") 
-                    || businessLine[i].equals("grocery")
-                  || businessLine[i].equals("pharmacy")
-                  || businessLine[i].equals("restaurant")){
-                    if(code[i].length() == 0)continue;
-                    boolean found = true;
-                    for(int j=0;j<code[i].length();j++){
-                        char ch = code[i].charAt(j);
-                        if (!Character.isLetterOrDigit(ch) && ch != '_') {
-                            found = false;
-                            break;
-                        }
-                    }
+        List<String> elect = new ArrayList<>();
+        List<String> groc = new ArrayList<>();
+        List<String> phar = new ArrayList<>();
+        List<String> rest = new ArrayList<>();
 
-                    if(found){
-                        if(businessLine[i].startsWith("e"))e.add(code[i]);
-                        if(businessLine[i].startsWith("g"))g.add(code[i]);
-                        if(businessLine[i].startsWith("p"))p.add(code[i]);
-                        if(businessLine[i].startsWith("r"))r.add(code[i]);
-                    }
-                  }
+        for( int i = 0 ; i < code.length ; i++){
+            if ((code[i].matches("^\\w+$")) && (Arrays.asList(valid).contains(businessLine[i]) && isActive[i])) {
+                if(businessLine[i].equals("electronics")){
+                    elect.add(code[i]);
+                }
+                else if(businessLine[i].equals("grocery")){
+                    groc.add(code[i]);
+                }
+                else if(businessLine[i].equals("pharmacy")){
+                    phar.add(code[i]);
+                }
+                else{
+                    rest.add(code[i]);
+                }
             }
         }
-        Collections.sort(e);
-        Collections.sort(g);
-        Collections.sort(p);
-        Collections.sort(r);
-        res.addAll(e);
-        res.addAll(g);
-        res.addAll(p);
-        res.addAll(r);
-        
+        Collections.sort(elect);
+        Collections.sort(groc);
+        Collections.sort(phar);
+        Collections.sort(rest);
+
+        res.addAll(elect);
+        res.addAll(groc);
+        res.addAll(phar);
+        res.addAll(rest);
         return res;
     }
 }
