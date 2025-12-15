@@ -1,16 +1,34 @@
 class Solution {
     public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
-        int[] ind = new int[100];
-        String[] valid = {"electronics", "grocery", "pharmacy", "restaurant"};
-        List<String> res = new ArrayList<>();
-        
-        List<String> elect = new ArrayList<>();
-        List<String> groc = new ArrayList<>();
-        List<String> phar = new ArrayList<>();
-        List<String> rest = new ArrayList<>();
 
-        for( int i = 0 ; i < code.length ; i++){
-            if ((code[i].matches("^\\w+$")) && (Arrays.asList(valid).contains(businessLine[i]) && isActive[i])) {
+        List<String> res = new ArrayList();
+        
+        List<String> elect = new ArrayList();
+        List<String> groc = new ArrayList();
+        List<String> phar = new ArrayList();
+        List<String> rest = new ArrayList();
+
+        for( int i = 0 ; i < isActive.length ; i++){
+            if (isActive[i]) {
+                if(businessLine[i].equals("electronics") 
+                    || businessLine[i].equals("grocery")
+                  || businessLine[i].equals("pharmacy")
+                  || businessLine[i].equals("restaurant")){
+                    
+                if(code[i].length() == 0){
+                    continue;
+                }
+
+                boolean crt = true;
+                for(int j = 0 ;j<code[i].length() ; j++){
+                    char ch = code[i].charAt(j);
+                    if(!Character.isLetterOrDigit(ch) && ch!='_'){
+                        crt = false;
+                        break;
+                    }
+                }
+                
+                if(crt){
                 if(businessLine[i].equals("electronics")){
                     elect.add(code[i]);
                 }
@@ -23,6 +41,8 @@ class Solution {
                 else{
                     rest.add(code[i]);
                 }
+                }
+                  }
             }
         }
         Collections.sort(elect);
