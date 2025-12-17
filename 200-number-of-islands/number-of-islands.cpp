@@ -16,12 +16,9 @@ public:
 
     int numIslands(vector<vector<char>>& grid) {
         int count = 0;
-        for(int r = 0 ; r < grid.size() ; r++)
-        {
-            for(int c = 0 ; c < grid[0].size() ; c++)
-            {
-                if(grid[r][c] == '1')
-                {
+        for(int r = 0 ; r < grid.size() ; r++){
+            for(int c = 0 ; c < grid[0].size() ; c++){
+                if(grid[r][c] == '1'){
                     dfs(grid,r,c);
                     count++;
                 }
