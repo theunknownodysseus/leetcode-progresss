@@ -18,12 +18,15 @@ class Solution {
         if(root == null){
             return false;
         }
-        if(root.left == null && root.right == null){
-            return targetSum == root.val;
+        int sub  = targetSum - root.val;
+        if(sub == 0 && root.left == null && root.right == null){
+            return true;
         }
-        boolean left = hasPathSum(root.left , targetSum-root.val);
-        boolean right = hasPathSum(root.right , targetSum-root.val);
-
-        return left || right;
+        boolean l=false, r = false;
+        if(root.left != null){
+            l = hasPathSum(root.left, sub);}
+        if(root.right != null){
+            r = hasPathSum(root.right, sub);}
+        return l || r;
     }
 }
