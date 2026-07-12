@@ -6,7 +6,6 @@ class Solution {
         return res;
     }
     public void back(int[] nums, List<List<Integer>> res , int start, List<Integer> curr){
-        if(!res.contains(curr))
         res.add(new ArrayList<>(curr));
         for(int i = start; i < nums.length ; i++){
             if(i>start && nums[i] == nums[i-1]){
